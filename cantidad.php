@@ -20,7 +20,8 @@
         background-color: #56c9b2;
       }
       table{
-        margin: 0 auto;
+        margin-right: auto;
+        margin-left:  auto;
         width: 65%;
         height: 65%;
         margin-top: 12%;
@@ -37,7 +38,7 @@
             for($x=0;$x<$columnas;$x++){
               if($columnas_pares%2==0){
                 $columnas_pares=$columnas_pares+1;
-                echo "<td class='naranja'></td>";
+                echo "<td class='naranja'>  </td>";
               }
               else{
                 $columnas_pares=$columnas_pares+1;
