@@ -21,8 +21,11 @@ td{
   perspective: 1000px;
 }
 /* gira el panel al fer clic */
- .flip-container.clicked .flipper {
+.clicked .flipper {
   transform: rotateY(180deg);
+  width: 125px;
+  height: 150px;
+  perspective: 1000px;
 }
 .flip-container, .front, .back {
   width: 125px;
@@ -44,7 +47,6 @@ td{
 /* amaga el panell frontal darrere de la carta */
 .front {
   z-index: 2;
-/* aixo es per firefox */
   transform: rotateY(0deg);
 }
 /* mostra la carta inicialment amagada */
