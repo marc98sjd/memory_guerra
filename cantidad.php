@@ -1,76 +1,35 @@
 <html>  
   <head>
+    <!-- faig el link al css -->
+    <link rel="stylesheet" type="text/css" href="css_memory.css">
+    <!-- aqui creo les variables php i asigno valor a files i columnes -->
     <?php
-      $filas =  $_GET['fila'];
-      $columnas = $_GET['columna'];
-      $contador = 0;
-      $columnas_pares=0;
+      $tamaño =  $_POST['tamaño_tablero'];
+      if($tamaño==6){
+        $filas = 3;
+        $columnas = 4;
+      }elseif($tamaño==16){
+        $filas = 4;
+        $columnas = 8;
+      }else{
+        $filas = 8;
+        $columnas = 8;
+      }
     ?>
-    <style type="text/css">
-      body{
-        background-image: url("fondo_pagina.jpg");
-        background-repeat: no-repeat;
-      }
-      table{
-        margin-right: auto;
-        margin-left:  auto;
-        width: 65%;
-        height: 65%;
-        border: hidden;
-        border-collapse: collapse;
-      }
-      td{
-        padding: 5px;
-        border:none;
-      }
-      /* entire container, keeps perspective */
-      .flip-container {
-        perspective: 1000px;
-       }
-      /* flip the pane when hovered */
-      .flip-container:hover .flipper, .flip-container.hover .flipper {
-        transform: rotateY(180deg);
-      }
-      .flip-container, .front, .back {
-        width: 100px;
-        height: 150px; 
-      }
-      /* flip speed goes here */
-      .flipper {
-        transition: 1.0s;
-        transform-style: preserve-3d;
-        position: relative;
-      }
-      /* hide back of pane during swap */
-      .front, .back {
-        backface-visibility: hidden;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-      /* front pane, placed above back */
-      .front {
-        z-index: 2;
-        /* for firefox 31 */
-        transform: rotateY(0deg);
-      }
-      /* back, initially hidden pane */
-      .back {
-        transform: rotateY(180deg);
-      } 
-      .fotos{
-        width: 100%;
-        height: 100%; 
-        border-radius: 20px;
-      }
-    </style>                                         
+    <title>MEMORY GUERRA</title>
+    <meta charset="utf-8">                               
   </head>                                                                 
   <body>
-    <table border="15">
+    <table>
+      <!-- aqui creo la quantitat de cartes del memory de forma dinamica, dins de diversos divs per tal de fer l'animació del flip -->
       <?php
+      $directorio="cartas";
+      $array_fotos= dir($directorio);
         for($i=0;$i<$filas;$i++){ 
           echo "<tr>";
             for($x=0;$x<$columnas;$x++){
+              $imagen = $array_fotos -> read();
+              echo $directorio."/".$imagen;
               echo "<td class='color_fondo'>
                       <div class='flip-container'>
                           <div class='flipper'>
@@ -78,14 +37,15 @@
                               <img src='tras_carta.jpg' class='fotos'>
                             </div>
                             <div class='back'>
-                              <img src='vaca.jpg' class='fotos'>
+                              <img src=$directorio"."/"."$imagen class='fotos'>
                             </div>
                           </div>
                       </div>
                     </td>";
             }
           echo "</tr>";
-        } 
+        }
+        $array_fotos ->close();
       ?>
     </table>
   </body>                                                                 

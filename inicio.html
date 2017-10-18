@@ -5,10 +5,15 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<FORM method="GET" action="cantidad.php">
-			Quantes files vols?<INPUT type="text" name="fila" /><br />
-			Quantes columnes vols?<INPUT type="text" name="columna" /><br />
-			<INPUT type="submit" value="¡A JUGAR!"/>
+	<h1>MEMORY</h1>
+	<h2>· Escolleix la mida del memory:</h2>
+		<FORM method="POST" action="cantidad.php">
+			<select name="tamaño_tablero">
+				<option value="6">6 cartes</option>
+				<option value="16">16 cartes</option>
+				<option value="32">32 cartes</option>
+			</select>
+			<br><br><INPUT type="submit" value="¡A JUGAR!"/>
 		</FORM>
 	</body>
 </html>
