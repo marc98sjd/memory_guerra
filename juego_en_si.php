@@ -29,7 +29,7 @@
       <?php
 	    $directorio="cartas";
 	    $instancia_fotos= dir($directorio);
-        for ($i=0; $i < 2 ; $i++) { 
+        for ($i=0; $i < 3 ; $i++) { 
         	$imagen = $instancia_fotos -> read();
         }
         $imagen = $instancia_fotos -> read();
@@ -39,8 +39,8 @@
         	$array_fotos[] =$imagen;
         }
         $instancia_fotos ->close();
-	    /*echo '<script>sortear_array('.$array_fotos.');</script>';
-	    echo "<p id='demo'></p>";*/
+	      shuffle($array_fotos);
+        print_r($array_fotos);
       	
       	/* aqui creo la quantitat de cartes del memory de forma dinamica, dins de diversos divs per tal de fer l'animació del flip */
       	for($i=0;$i<$filas;$i++){ 
@@ -51,10 +51,10 @@
                     <div class='flip-container' id='first' onclick='cambiar_clase()'>
                       <div class='flipper'>
                         <div class='front'>
-                          <img src='tras_carta.jpg' class='fotos'>
+                          <img src='$carta_delantera' class='fotos' >
                         </div>
                         <div class='back'>
-                          <img src='$carta_delantera' class='fotos' >
+                          <img src='tras_carta.jpg' class='fotos'>
                         </div>
                       </div>
                     </div>

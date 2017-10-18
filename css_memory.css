@@ -21,8 +21,7 @@ td{
   perspective: 1000px;
 }
 /* gira el panel al fer clic */
-/*.flip-container:hover .flipper, */
-.flip-container.clicked .flipper {
+ .flip-container.clicked .flipper {
   transform: rotateY(180deg);
 }
 .flip-container, .front, .back {
