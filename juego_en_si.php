@@ -18,25 +18,25 @@
         $filas = 8;
         $columnas = 8;
       }
-      $num_cartas=(($filas*$columnas)/2)-1;
+      $num_cartas=(($filas*$columnas)/2);
     ?>
     <title>MEMORY GUERRA</title>
     <meta charset="utf-8">                               
   </head>                                                                 
-  <body>
+  <body onload="inicializar()">
     <table>
       <!-- aqui creo una array amb el nom dels fitxers que contenen les fotos, segons la quantitat que demana l'usuari-->
       <?php
   	    $directorio="cartas";
   	    $instancia_fotos= dir($directorio);
-        for ($i=0; $i < 2 ; $i++) { 
-        	$imagen = $instancia_fotos -> read();
-        }
-        $imagen = $instancia_fotos -> read();
-        $array_fotos = array($imagen);
+        $array_fotos = array();
         for($x=0;$x<$num_cartas;$x++){
-        	$imagen = $instancia_fotos -> read();
-        	$array_fotos[] =$imagen;
+          $imagen = $instancia_fotos -> read();
+          if($imagen !== '.' && $imagen !== '..'){
+            $array_fotos[] = $imagen;
+          }else{
+            $x=$x-1;
+          }      
         }
         $instancia_fotos ->close();
 	      $array_fotos_duplicada=$array_fotos;
@@ -49,19 +49,20 @@
           echo "<tr>";
           for($x=0;$x<$columnas;$x++){
           	$carta_delantera="cartas/".$array_fotos[$y];
-            $y+=1;
             echo "<td class='color_fondo'>
-                    <div class='flip-container' id='a_girar'>
+                    <div class='flip-container' id='a_girar".$y."'>
                       <div class='flipper'>
                         <div class='front'>
                           <img src='tras_carta.jpg' class='fotos'>
                         </div>
                         <div class='back'>
                           <img src='$carta_delantera' class='fotos'>
+                          
                         </div>
                       </div>
                     </div>
                   </td>";
+            $y+=1;
             }
           echo "</tr>";
         }
