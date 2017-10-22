@@ -3,7 +3,7 @@
   	<!-- link javascript -->
   	<script type="text/javascript" src="javascript_memoryy.js"></script>
     <!-- link al css -->
-    <link rel="stylesheet" type="text/css" href="css_memory.css">
+    <link rel="stylesheet" type="text/css" href="css_memoryy.css">
     <!-- aqui creo les variables php i asigno valor a files i columnes -->
     <?php
       $tamaño =  $_POST['tamaño_tablero'];
@@ -56,7 +56,7 @@
                           <img src='tras_carta.jpg' class='fotos'>
                         </div>
                         <div class='back'>
-                          <img src='$carta_delantera' class='fotos'>
+                          <img src='$carta_delantera' class='fotos2'>
                         </div>
                       </div>
                     </div>
@@ -67,5 +67,11 @@
         }
       ?>
     </table>
+    <div id="results">Parejas restantes:
+      <p id="pareja"></p>
+      <script type="text/javascript">
+        var javaScriptVar = "<?php echo $carta_delantera; ?>";
+      </script>
+    </div>
   </body>                                                                 
 </html>

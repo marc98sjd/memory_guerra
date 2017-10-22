@@ -3,10 +3,12 @@ body{
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
+  color: white;
 }
 table{
   margin-right: auto;
   margin-left:  auto;
+  margin-top: 5%;
   width: 65%;
   height: 65%;
   border: hidden;
@@ -15,6 +17,17 @@ table{
 td{
   padding: 15px;
   border:none;
+}
+#results{
+  font-size: 25px;
+  border: 3px dashed red;
+  width: 90%;
+  height: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 5%;
+  border-collapse: separate;
+  border-spacing: 10px 50px;
 }
 /* aixo estableix la perspectiva del container a 1000px */
 .flip-container{
