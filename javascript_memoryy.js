@@ -21,12 +21,19 @@ function cambiar_clase(){
 	}else if(cartasGiradas.length < 2){
     	/*giro carta y compruebo si son iguales*/
     	this.classList.add("clicked");
-    	cartasGiradasFoto = document.getElementsByClassName("fotos2");
+    	cartasGiradasFoto = document.getElementsByClassName("flip-container clicked").lastchild;
     	if(cartasGiradas.length==2){
     		num_intentos= num_intentos +1;
     		document.getElementById("intentos").innerHTML = num_intentos;
 			var myimg = cartasGiradasFoto[0].getElementsByTagName('img')[0];
 			var mysrc = myimg.src;
+
+			var context = new AudioContext();
+			var o = context.createOscillator();
+			o.type = "sine";
+			o.connect(context.destination);
+			o.start();
+			o.stop();
     		/*var carta_levantada1 = cartasGiradas[0].getAttribute("src");
     		alert(cartasGiradas[0]);
 			var carta_levantada2 = cartasGiradas[1].getAttribute("src");

@@ -3,7 +3,7 @@
   	<!-- link javascript -->
   	<script type="text/javascript" src="javascript_memoryy.js"></script>
     <!-- link al css -->
-    <link rel="stylesheet" type="text/css" href="css_memoryy.css">
+    <link rel="stylesheet" type="text/css" href="css_memory.css">
     <!-- aqui creo les variables php i asigno valor a files i columnes -->
     <?php
       $tamaño =  $_POST['tamaño_tablero'];
