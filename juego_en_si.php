@@ -8,12 +8,15 @@
     <?php
       $tamaño =  $_POST['tamaño_tablero'];
       $num_cartas=0;
-      if($tamaño==6){
-        $filas = 3;
-        $columnas = 4;
-      }elseif($tamaño==16){
+      if($tamaño==4){
         $filas = 4;
-        $columnas = 8;
+        $columnas = 4;
+      }elseif($tamaño==6){
+        $filas = 6;
+        $columnas = 6;
+      }elseif($tamaño==2){
+        $filas = 2;
+        $columnas = 2;
       }else{
         $filas = 8;
         $columnas = 8;
