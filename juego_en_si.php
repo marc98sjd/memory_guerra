@@ -1,7 +1,7 @@
 <html>  
   <head>
   	<!-- link javascript -->
-  	<script type="text/javascript" src="javascript_memoryy.js"></script>
+  	<script type="text/javascript" src="javascript_memory.js"></script>
     <!-- link al css -->
     <link rel="stylesheet" type="text/css" href="css_memory.css">
     <!-- aqui creo les variables php i asigno valor a files i columnes -->
@@ -49,18 +49,7 @@
           echo "<tr>";
           for($x=0;$x<$columnas;$x++){
           	$carta_delantera="cartas/".$array_fotos[$y];
-            echo "<td class='color_fondo'>
-                    <div class='flip-container' id='a_girar".$y."'>
-                      <div class='flipper'>
-                        <div class='front'>
-                          <img src='tras_carta.jpg' class='fotos'>
-                        </div>
-                        <div class='back'>
-                          <img src='$carta_delantera' class='fotos'>
-                        </div>
-                      </div>
-                    </div>
-                  </td>";
+            echo "<td class='color_fondo'><div class='flip-container' id='a_girar".$y."'><div class='flipper'><div class='front'><img src='tras_carta.jpg' class='fotos'></div><div class='back'><img src='$carta_delantera' id='foto_girada' class='fotos'></div></div></div></td>";
             $y+=1;
             }
           echo "</tr>";
@@ -68,11 +57,15 @@
       ?>
     </table>
     <div id="results">
+      <br>
       <p id="elements">Parejas restantes:</p>
       <p id="pareja"></p>
       <br>
       <p id="elements">Intentos:</p>
       <p id="intentos"></p>
+      <br>
+      <p id="elements">Tiempo de juego:</p>
+      <p id="tiempo"></p><p> segundos</p>
     </div>
   </body>                                                                 
 </html>
