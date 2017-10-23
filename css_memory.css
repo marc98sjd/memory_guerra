@@ -12,7 +12,10 @@ table{
   height: 65%;
   border: hidden;
   border-collapse: collapse;
-
+}
+button{
+  background-color: #466648;
+  border-radius: 4px;
 }
 td{
   padding: 15px;

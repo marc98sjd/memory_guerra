@@ -43,7 +43,7 @@ function logica_juego(){
    				document.getElementById("pareja").innerHTML = restantes;
 				//fin juego
    				if (restantes==0) {
-   					alert("WIN!!!\n\nHas trigat "+contador+" segons y has necessitat "+num_intentos+" intents.");
+   					alert("WIN!!!\n\nHas trigat "+(contador-1)+" segons y has necessitat "+num_intentos+" intents.");
    					clearInterval(fin_tiempo);
    				}
 				//case girar cartas iguales dos veces consecutivas

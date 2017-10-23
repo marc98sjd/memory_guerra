@@ -69,6 +69,7 @@
       <br>
       <p id="elements">Tiempo de juego:</p>
       <p id="tiempo"></p><p> segundos</p>
+      <button onclick="">Torna a començar</button>
     </div>
   </body>                                                                 
 </html>
