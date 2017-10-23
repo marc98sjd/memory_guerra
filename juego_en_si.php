@@ -56,7 +56,7 @@
                           <img src='tras_carta.jpg' class='fotos'>
                         </div>
                         <div class='back'>
-                          <img src='$carta_delantera' class='fotos2'>
+                          <img src='$carta_delantera' class='fotos'>
                         </div>
                       </div>
                     </div>
@@ -67,11 +67,12 @@
         }
       ?>
     </table>
-    <div id="results">Parejas restantes:
+    <div id="results">
+      <p id="elements">Parejas restantes:</p>
       <p id="pareja"></p>
-      <script type="text/javascript">
-        var javaScriptVar = "<?php echo $carta_delantera; ?>";
-      </script>
+      <br>
+      <p id="elements">Intentos:</p>
+      <p id="intentos"></p>
     </div>
   </body>                                                                 
 </html>
