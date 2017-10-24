@@ -1,3 +1,8 @@
+<?php
+session_start();
+$_SESSION['recarga'] = true;
+?>
+<!DOCTYPE html>
 <html>  
   <head>
   	<!-- link javascript -->
@@ -6,15 +11,16 @@
     <link rel="stylesheet" type="text/css" href="css_memory.css">
     <!-- aqui creo les variables php i asigno valor a files i columnes -->
     <?php
-      $tamaño =  $_POST['tamaño_tablero'];
+      $_SESSION['tamaño'] =  $_POST['tamaño_tablero'];
+      $tamañoFinal = $_SESSION['tamaño'];
       $num_cartas=0;
-      if($tamaño==4){
+      if($tamañoFinal==4){
         $filas = 4;
         $columnas = 4;
-      }elseif($tamaño==6){
+      }elseif($tamañoFinal==6){
         $filas = 6;
         $columnas = 6;
-      }elseif($tamaño==2){
+      }elseif($tamañoFinal==2){
         $filas = 2;
         $columnas = 2;
       }else{
@@ -42,17 +48,22 @@
           }      
         }
         $instancia_fotos ->close();
-	      $array_fotos_duplicada=$array_fotos;
-        $array_fotos=array_merge($array_fotos,$array_fotos_duplicada);
-        shuffle($array_fotos);
-      	
+        if(isset($_SESSION['array_final'])){
+          $array_fotos = $_SESSION['array_final'];
+        }
+        elseif ($_SESSION['recarga']==true) {
+          $array_fotos=array_merge($array_fotos,$array_fotos);
+          shuffle($array_fotos);
+          $_SESSION['array_final'] = $array_fotos;
+          $_SESSION['recarga'] = false;
+        }     	
       	/* aqui creo la quantitat de cartes del memory de forma dinamica, dins de diversos divs per tal de fer l'animació del flip */
       	$y=0;
         for($i=0;$i<$filas;$i++){ 
           echo "<tr>";
           for($x=0;$x<$columnas;$x++){
           	$carta_delantera="cartas/".$array_fotos[$y];
-            echo "<td class='color_fondo'><div class='flip-container' id='a_girar".$y."'><div class='flipper'><div class='front'><img src='tras_carta.jpg' class='fotos'></div><div class='back'><img src='$carta_delantera' id='foto_girada' class='fotos'></div></div></div></td>";
+            echo "<td class='color_fondo'><div class='flip-container' id='a_girar".$y."'><div class='flipper'><div class='front'><img src='tras_carta.jpg' class='fotos'></div><div class='back'><img src='$carta_delantera' class='fotos'></div></div></div></td>";
             $y+=1;
             }
           echo "</tr>";
@@ -60,16 +71,22 @@
       ?>
     </table>
     <div id="results">
-      <br>
-      <p id="elements">Parejas restantes:</p>
-      <p id="pareja"></p>
-      <br>
-      <p id="elements">Intentos:</p>
-      <p id="intentos"></p>
-      <br>
-      <p id="elements">Tiempo de juego:</p>
-      <p id="tiempo"></p><p> segundos</p>
-      <button onclick="">Torna a començar</button>
+      <div id="final_results">
+        <p>Parejas restantes:</p>
+        <p id="pareja"></p>
+        <br>
+        <p>Intentos:</p>
+        <p id="intentos"></p>
+        <br>
+        <p>Tiempo de juego:</p>
+        <p id="tiempo"></p><p> segundos</p>
+      </div>
+      <div id="final_results">
+        <br><form name="recargarPagina" method="post" action="juego_en_si.php">
+              <input type="hidden" name="recarga" value="true">
+              <input type="submit" name="button" value="Torna a començar">
+            </form>
+      </div>
     </div>
   </body>                                                                 
 </html>
