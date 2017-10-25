@@ -8,6 +8,8 @@ var contador = 1;
 var first_time=true;
 var carta1_src = "";
 var carta2_src = "";
+var intentos = 0 ;
+var limite = 0 ;
 var fin_tiempo=setInterval(timer,1000);
 
 /*aquesta funcio la utilitzo perque no s'executi la funcio de cambiar 
@@ -18,9 +20,12 @@ function inicializar(){
 	for(var i = 0; i < cartas.length; i++){
 		document.getElementById("a_girar"+i).addEventListener( 'click', logica_juego);
 	}
+	//pongo eventlistener al boton que llama a la funcion de ayuda
+	document.getElementById("ayuda").addEventListener( 'click', ayudas3);
+	
 	//inicializo los intentos y las parejas restantes
 	document.getElementById("pareja").innerHTML = (cartas.length)/2;
-	document.getElementById("intentos").innerHTML = num_intentos;
+	actualizar_intentos(intentos=0);
 }
 
 /*aqui controlo la lógica general del joc*/
@@ -30,7 +35,6 @@ function logica_juego(){
 		}else{
 			/*girar las dos cartas si son erroneas*/
 			cartaErronea();
-			//case especial
 			first_time=true;
 			girar_carta(this);
 		}		
@@ -39,7 +43,7 @@ function logica_juego(){
 	    girar_carta(this);
 	    //compruebo si hay dos cartas giradas
 	    if(cartasGiradas.length==2){
-	    	actualizar_intentos();
+	    	actualizar_intentos(intentos=1);
 			//compruebo si son iguales
 			if (carta1_src == carta2_src){
   				actualizar_parejaRestante();
@@ -72,8 +76,8 @@ function actualizar_parejaRestante(){
    	document.getElementById("pareja").innerHTML = restantes;
 }
 
-function actualizar_intentos(){
-	num_intentos= num_intentos +1;
+function actualizar_intentos(intentos){
+	num_intentos= num_intentos +intentos;
 	document.getElementById("intentos").innerHTML = num_intentos;
 }
 
@@ -96,6 +100,22 @@ function cartaErronea(){
 function timer(){
 	document.getElementById("tiempo").innerHTML = contador;
 	contador=contador+1;
+}
+
+function ayudas3(){
+	limite=limite+1;
+	if (limite<=3){
+		cartas_a_girar = document.getElementsByClassName("flip-container");
+		for (var i = 0; i < cartas_a_girar.length; i++) {
+    		cartas_a_girar[i].classList.add("clicked");
+   		}
+    	setTimeout(function(){
+    		for (var i = 0; i < cartas_a_girar.length; i++) {
+    			cartas_a_girar[i].classList.remove("clicked");
+    		}
+		}, 3000);
+	actualizar_intentos(intentos=5);
+	}
 }
 
 /* var context = new AudioContext();
