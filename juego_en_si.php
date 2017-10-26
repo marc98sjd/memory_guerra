@@ -14,6 +14,15 @@ session_start();
                  
   </head>                                                                 
   <body onload="inicializar()">
+    <audio id="girar">
+      <source src="/audios/audiogirar.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="acierto">
+      <source src="/audios/audioacertadas.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="error">
+      <source src="/audios/audioerroneas.mp3" type="audio/mpeg">
+    </audio>
     <table>
       <!-- aqui creo una array amb el nom dels fitxers que contenen les fotos, segons la quantitat que demana l'usuari-->
       <?php
@@ -72,18 +81,16 @@ session_start();
     <div id="results">
       <div id="final_results">
         <p>Parejas restantes:</p>
-        <p id="pareja"></p>
-        <br>
+        <p id="pareja"></p><br>
         <p>Intentos:</p>
-        <p id="intentos"></p>
-        <br>
+        <p id="intentos"></p><br>
         <p>Tiempo de juego:</p>
-        <p id="tiempo"></p><p> segundos</p>
+        <p id="tiempo"></p>
       </div>
       <div id="final_results">
-        <button>Rànking</button><br>
-        <button>Torna a començar</button><br>
-        <button id="ayuda" value="clickme">Ajuda</button>
+        <button>Ranking</button>
+        <button>Volver a empezar</button>
+        <button id="ayuda" value="clickme">Ayuda</button>
       </div>
     </div>
   </body>                                                                 

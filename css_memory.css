@@ -16,13 +16,17 @@ button{
   background-color: #466648;
   border-radius: 8px;
   color: white;
+  margin: 0 auto;
 }
 td{
-  padding: 15px;
   border:none;
+  padding-bottom: 20px;
 }
 div > p{
   display: inline;
+}
+div > button{
+  display: block;
 }
 /* aixo estableix la perspectiva del container a 1000px */
 .flip-container{
@@ -79,7 +83,7 @@ div > p{
   font-size: 15px;  
   border: 5px dashed #466648;
   width: 90%;
-  height: 58px;
+  height: 65px;
   margin-left: 5%;
   margin-right: 5%;
   border-collapse: separate;
@@ -88,6 +92,7 @@ div > p{
 }
 #final_results{
   width: 50%;
-  float:left;
+  float: left;
   text-align: center;
+  height: 100%;
 }

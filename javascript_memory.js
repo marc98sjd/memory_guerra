@@ -4,13 +4,18 @@ var cartasGiradas = [];
 var num_intentos = 0;
 var restantes = 0;
 var quitar_carta = 0;
-var contador = 1;
+var contador = 0;
 var first_time=true;
 var carta1_src = "";
 var carta2_src = "";
 var intentos = 0 ;
 var limite = 0 ;
+var sumaMinutos = 0;
+var tiempo_total = "";
 var fin_tiempo=setInterval(timer,1000);
+var girar = document.getElementById("girar");
+var acierto = document.getElementById("acierto");
+var error = document.getElementById("error");
 
 /*aquesta funcio la utilitzo perque no s'executi la funcio de cambiar 
 clase fins que s'hagi carregat tot l'html, per tal d'evitar possibles errors.*/
@@ -66,11 +71,12 @@ function bloquearCartas(){
 }
 
 function fin_juego(){
-	alert("WIN!!!\n\nHas trigat "+(contador-1)+" segons y has necessitat "+num_intentos+" intents.");
+	alert("WIN!!!\n\nHas trigat "+tiempo_total+" y has necessitat "+num_intentos+" intents.");
    	clearInterval(fin_tiempo);
 }
 
 function actualizar_parejaRestante(){
+	acierto.play();
 	quitar_carta=quitar_carta+2;
    	restantes = (cartas.length - quitar_carta)/2;
    	document.getElementById("pareja").innerHTML = restantes;
@@ -83,6 +89,7 @@ function actualizar_intentos(intentos){
 
 function girar_carta(elemento){
 	elemento.classList.add("clicked");
+	girar.play();
 	if (first_time) {
 	  	carta1_src = elemento.childNodes[0].childNodes[1].firstChild.getAttribute('src');
 	   	first_time=false;
@@ -92,16 +99,23 @@ function girar_carta(elemento){
 }
 
 function cartaErronea(){
+	error.play();
 	cartasGiradas[0].className="flip-container";
 	cartasGiradas[0].className="flip-container";
 }
 
 /* contador de tiempo */
 function timer(){
-	document.getElementById("tiempo").innerHTML = contador;
+	tiempo_total = sumaMinutos+":"+contador;
+	document.getElementById("tiempo").innerHTML = tiempo_total;
 	contador=contador+1;
+	if (contador==60){
+		sumaMinutos = sumaMinutos+1;
+		contador=0;
+	}
 }
 
+/* funcion gira todas las cartas 5 segundos */
 function ayudas3(){
 	limite=limite+1;
 	if (limite<=3){
@@ -113,7 +127,7 @@ function ayudas3(){
     		for (var i = 0; i < cartas_a_girar.length; i++) {
     			cartas_a_girar[i].classList.remove("clicked");
     		}
-		}, 3000);
+		}, 5000);
 	actualizar_intentos(intentos=5);
 	}
 }
