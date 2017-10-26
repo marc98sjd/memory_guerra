@@ -14,7 +14,7 @@ session_start();
                  
   </head>                                                                 
   <body onload="inicializar()">
-    <audio id="girar">
+    <<!-- <audio id="girar">
       <source src="/audios/audiogirar.mp3" type="audio/mpeg">
     </audio>
     <audio id="acierto">
@@ -22,7 +22,7 @@ session_start();
     </audio>
     <audio id="error">
       <source src="/audios/audioerroneas.mp3" type="audio/mpeg">
-    </audio>
+    </audio> -->
     <table>
       <!-- aqui creo una array amb el nom dels fitxers que contenen les fotos, segons la quantitat que demana l'usuari-->
       <?php
@@ -90,7 +90,9 @@ session_start();
       <div id="final_results">
         <button>Ranking</button>
         <button>Volver a empezar</button>
-        <button id="ayuda" value="clickme">Ayuda</button>
+        <button id="ayuda">Ayudas
+          <p id="ayudaRestante"></p>
+        </button>
       </div>
     </div>
   </body>                                                                 
