@@ -33,9 +33,10 @@ function inicializar(){
 	document.getElementById("ayudaRestante").innerHTML = "("+(ayudasQueQuedan)+")";
 
 	//inicializo las variables de los audios
-	// var girar = document.getElementById("girar");
-	// var acierto = document.getElementById("acierto");
-	// var error = document.getElementById("error");
+	var girar = document.getElementById("girar");
+	var acierto = document.getElementById("acierto");
+	var error = document.getElementById("error");
+	var win1 = document.getElementById("win1");
 }
 
 /*aqui controlo la lógica general del joc*/
@@ -56,16 +57,21 @@ function logica_juego(){
    				}
 				//cambio clase para que no giren nunca mas
 				bloquearCartas();
-				first_time=true;			
-			}
-			cartasGiradas = document.getElementsByClassName("flip-container clicked");
-			//giro cartas erroneas tras 2 segundos
-	    	setTimeout(function(){
-    			cartaErronea();
+				//pongo variable a true para colocar source siguiente carta girada en variable carta1_src y no carta2_src
 				first_time=true;
-			}, 2000);
-	    } 
-	    cartasGiradas = document.getElementsByClassName("flip-container clicked");  	
+				//actualizo array cartas
+				cartasGiradas = document.getElementsByClassName("flip-container clicked");			
+			}else{
+				error.play();
+				//giro cartas erroneas tras 2 segundos
+	    		setTimeout(function(){
+    				cartaErronea();
+					first_time=true;
+				}, 1500);
+				//actualizo array cartas
+			}
+	    }
+	    cartasGiradas = document.getElementsByClassName("flip-container clicked");	
 	}
 }
 
@@ -75,12 +81,13 @@ function bloquearCartas(){
 }
 
 function fin_juego(){
-	alert("WIN!!!\n\nHas trigat "+tiempo_total+" y has necessitat "+num_intentos+" intents.");
+	win1.play();
+    alert("WIN!!!\n\nHas trigat "+tiempo_total+" y has necessitat "+num_intentos+" intents.");
    	clearInterval(fin_tiempo);
 }
 
 function actualizar_parejaRestante(){
-	//acierto.play();
+	acierto.play();
 	quitar_carta=quitar_carta+2;
    	restantes = (cartas.length - quitar_carta)/2;
    	document.getElementById("pareja").innerHTML = restantes;
@@ -92,8 +99,8 @@ function actualizar_intentos(intentos){
 }
 
 function girar_carta(elemento){
+	girar.play();
 	elemento.classList.add("clicked");
-	//girar.play();
 	if (first_time) {
 	  	carta1_src = elemento.childNodes[0].childNodes[1].firstChild.getAttribute('src');
 	   	first_time=false;
@@ -103,7 +110,6 @@ function girar_carta(elemento){
 }
 
 function cartaErronea(){
-	//error.play();
 	cartasGiradas[0].className="flip-container";
 	cartasGiradas[0].className="flip-container";
 }

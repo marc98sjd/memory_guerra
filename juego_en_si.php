@@ -14,15 +14,10 @@ session_start();
                  
   </head>                                                                 
   <body onload="inicializar()">
-    <<!-- <audio id="girar">
-      <source src="/audios/audiogirar.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="acierto">
-      <source src="/audios/audioacertadas.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="error">
-      <source src="/audios/audioerroneas.mp3" type="audio/mpeg">
-    </audio> -->
+    <audio id="girar" src="audios/audiogirar.mp3" type="audio/mpeg"></audio>
+    <audio id="acierto" src="audios/audioacertadas.mp3" type="audio/mpeg"></audio>
+    <audio id="error" src="audios/audioerroneas.mp3" type="audio/mpeg"></audio>
+    <audio id="win1" src="audios/audiowin1.mp3" type="audio/mpeg"></audio>
     <table>
       <!-- aqui creo una array amb el nom dels fitxers que contenen les fotos, segons la quantitat que demana l'usuari-->
       <?php
