@@ -2,8 +2,7 @@
 var cartas = [];
 var cartasGiradas = [];
 var num_intentos = 0;
-var restantes = 0;
-var quitar_carta = 0;
+var restantes = 8;
 var contador = 0;
 var first_time=true;
 var carta1_src = "";
@@ -49,18 +48,18 @@ function logica_juego(){
 	    	actualizar_intentos(intentos=1);
 			//compruebo si son iguales
 			if (carta1_src == carta2_src){
-  				//actualizo pareja restante
-  				actualizar_parejaRestante();
-				//fin juego
-   				if (restantes==0) {
-   					fin_juego();
-   				}
 				//cambio clase para que no giren nunca mas
 				bloquearCartas();
+				//actualizo pareja restante
+  				actualizar_parejaRestante();
 				//pongo variable a true para colocar source siguiente carta girada en variable carta1_src y no carta2_src
 				first_time=true;
 				//actualizo array cartas
-				cartasGiradas = document.getElementsByClassName("clicked");			
+				cartasGiradas = document.getElementsByClassName("clicked");
+				//fin juego
+   				if (restantes==0) {
+   					fin_juego();
+   				}			
 			}else{
 				error.play();
 				//giro cartas erroneas tras 1.5 segundos
@@ -71,7 +70,7 @@ function logica_juego(){
 			}
 	    }
 	    //actualizo array cartas
-	    cartasGiradas = document.getElementsByClassName("clicked");	
+	    cartasGiradas = document.getElementsByClassName("flip-container clicked");	
 	}
 }
 
@@ -88,8 +87,8 @@ function fin_juego(){
 
 function actualizar_parejaRestante(){
 	acierto.play();
-	quitar_carta=quitar_carta+2;
-   	restantes = (cartas.length - quitar_carta)/2;
+	cartas = document.getElementsByClassName("flip-container");
+   	restantes = (cartas.length)/2;
    	document.getElementById("pareja").innerHTML = restantes;
 }
 
@@ -100,7 +99,7 @@ function actualizar_intentos(intentos){
 
 function girar_carta(elemento){
 	girar.play();
-	elemento.className="clicked";
+	elemento.classList.add("clicked");
 	if (first_time) {
 	  	carta1_src = elemento.childNodes[0].childNodes[1].firstChild.getAttribute('src');
 	   	first_time=false;
@@ -136,12 +135,11 @@ function ayudas3(){
 	if (ayudasQueQuedan!=0){
 		var cartas_a_girar = document.getElementsByClassName("flip-container");
 		for (var i = 0; i < cartas_a_girar.length; i++) {
-			cartas_a_girar[i].className="clicked2";
+			cartas_a_girar[i].classList.add("clicked");
 		}
-   		cartas_a_girar = document.getElementsByClassName("clicked2");
     	setTimeout(function(){
     		for (var i = 0; i < cartas_a_girar.length; i++){
-    			cartas_a_girar[i].className="flip-container";
+    			cartas_a_girar[i].classList.remove("clicked");
     		}
 		}, 5000);
 
