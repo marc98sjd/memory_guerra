@@ -4,7 +4,7 @@ var cartasGiradas = [];
 var num_intentos = 0;
 var restantes = 8;
 var contador = 0;
-var first_time=true;
+var primer_src=true;
 var carta1_src = "";
 var carta2_src = "";
 var intentos = 0 ;
@@ -41,8 +41,10 @@ function inicializar(){
 /*aqui controlo la lógica general del joc*/
 function logica_juego(){
 	if(cartasGiradas.length < 2){
-	    //giro carta y cojo source
-	    girar_carta(this);
+	    if (this.classList.contains("clicked")){}else{
+	    	//giro carta y cojo source
+	    	girar_carta(this);
+	    }
 	    if(cartasGiradas.length==2){
 	    	//actualizo los intentos
 	    	actualizar_intentos(intentos=1);
@@ -53,7 +55,7 @@ function logica_juego(){
 				//actualizo pareja restante
   				actualizar_parejaRestante();
 				//pongo variable a true para colocar source siguiente carta girada en variable carta1_src y no carta2_src
-				first_time=true;
+				primer_src=true;
 				//actualizo array cartas
 				cartasGiradas = document.getElementsByClassName("clicked");
 				//fin juego
@@ -100,9 +102,9 @@ function actualizar_intentos(intentos){
 function girar_carta(elemento){
 	girar.play();
 	elemento.classList.add("clicked");
-	if (first_time) {
+	if (primer_src) {
 	  	carta1_src = elemento.childNodes[0].childNodes[1].firstChild.getAttribute('src');
-	   	first_time=false;
+	   	primer_src=false;
 	} else {
 	 	carta2_src = elemento.childNodes[0].childNodes[1].firstChild.getAttribute('src');
 	}
@@ -112,7 +114,7 @@ function cartaErronea(){
 	cartasGiradas[0].className="flip-container";
 	cartasGiradas[0].className="flip-container";
     //esto es para qu el source de la primera carta girada se guarde en la variable carta1_src y no en carta2_src
-	first_time=true;
+	primer_src=true;
 }
 
 /* contador de tiempo */
@@ -132,14 +134,23 @@ function timer(){
 
 /* ayuda gira todas las cartas 5 segundos */
 function ayudas3(){
+	var cartas_a_girar = document.getElementsByClassName("flip-container");
 	if (ayudasQueQuedan!=0){
-		var cartas_a_girar = document.getElementsByClassName("flip-container");
 		for (var i = 0; i < cartas_a_girar.length; i++) {
-			cartas_a_girar[i].classList.add("clicked");
+			//este if lo hago para evitar que se gire una carta que hayas cliqueado y aun no hayas girado la segunda
+			if (cartas_a_girar[i].classList.contains("clicked")){
+				cartas_a_girar[i].classList.add("doNothing");
+			}else {
+				cartas_a_girar[i].classList.add("clicked");
+			}
 		}
     	setTimeout(function(){
     		for (var i = 0; i < cartas_a_girar.length; i++){
-    			cartas_a_girar[i].classList.remove("clicked");
+    			if (cartas_a_girar[i].classList.contains("doNothing")){
+					cartas_a_girar[i].classList.remove("doNothing");
+				}else {
+					cartas_a_girar[i].classList.remove("clicked");
+				}
     		}
 		}, 5000);
 

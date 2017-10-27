@@ -21,7 +21,9 @@ session_start();
     <table>
       <!-- aqui creo una array amb el nom dels fitxers que contenen les fotos, segons la quantitat que demana l'usuari-->
       <?php
-        $_SESSION['tamaño'] =  $_POST['tamaño_tablero'];      
+        if(!isset($_SESSION['tamaño'])) {
+          $_SESSION['tamaño'] =  $_POST['tamaño_tablero'];    
+        }  
         $num_cartas=0;
         if($_SESSION['tamaño']==4){
           $filas = 4;
@@ -48,9 +50,9 @@ session_start();
             $x=$x-1;
           }      
         }
-
-       /* aqui controlo el shuffle per evitar que al recarregar es mesclin les cartes */
         $instancia_fotos ->close();
+
+        /* aqui controlo el shuffle per evitar que al recarregar es mesclin les cartes */
         if(isset($_SESSION['array_final'])){
           $array_fotos = $_SESSION['array_final'];
         }
@@ -84,10 +86,12 @@ session_start();
       </div>
       <div id="final_results">
         <button>Ranking</button>
-        <button>Volver a empezar</button>
-        <button id="ayuda">Ayudas
-          <p id="ayudaRestante"></p>
-        </button>
+        <form action="reset.php" method="POST">
+          <input type="hidden" name="resetInput">
+          <button>Volver a empezar</button>
+        </form>
+          <button id="ayuda">Ayudas
+        <p id="ayudaRestante"></p>
       </div>
     </div>
   </body>                                                                 
