@@ -29,22 +29,24 @@ div > button{
   display: block;
 }
 /* aixo estableix la perspectiva del container a 1000px */
-.flip-container{
+.flip-container, .clicked, .clicked2{
   perspective: 1000px;
   margin: 0 auto;
 }
 /* gira el panelL al fer clic */
-.clicked .flipper {
+.clicked .flipper, .clicked2 .flipper{
   transform: rotateY(180deg);
   width: 125px;
   height: 150px;
   perspective: 1000px;
+  margin: 0 auto;
 }
 .forever .flipper{
   transform: rotateY(180deg);
   width: 125px;
   height: 150px;
   perspective: 1000px;
+  margin: 0 auto;
 }
 .flip-container, .front, .back {
   width: 125px;

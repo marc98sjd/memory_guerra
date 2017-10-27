@@ -60,24 +60,24 @@ function logica_juego(){
 				//pongo variable a true para colocar source siguiente carta girada en variable carta1_src y no carta2_src
 				first_time=true;
 				//actualizo array cartas
-				cartasGiradas = document.getElementsByClassName("flip-container clicked");			
+				cartasGiradas = document.getElementsByClassName("clicked");			
 			}else{
 				error.play();
-				//giro cartas erroneas tras 2 segundos
+				//giro cartas erroneas tras 1.5 segundos
 	    		setTimeout(function(){
     				cartaErronea();
-					first_time=true;
 				}, 1500);
-				//actualizo array cartas
+				
 			}
 	    }
-	    cartasGiradas = document.getElementsByClassName("flip-container clicked");	
+	    //actualizo array cartas
+	    cartasGiradas = document.getElementsByClassName("clicked");	
 	}
 }
 
 function bloquearCartas(){
-	cartasGiradas[0].className="flip-container forever";
-	cartasGiradas[0].className="flip-container forever";
+	cartasGiradas[0].className="forever";
+	cartasGiradas[0].className="forever";
 }
 
 function fin_juego(){
@@ -100,7 +100,7 @@ function actualizar_intentos(intentos){
 
 function girar_carta(elemento){
 	girar.play();
-	elemento.classList.add("clicked");
+	elemento.className="clicked";
 	if (first_time) {
 	  	carta1_src = elemento.childNodes[0].childNodes[1].firstChild.getAttribute('src');
 	   	first_time=false;
@@ -112,6 +112,8 @@ function girar_carta(elemento){
 function cartaErronea(){
 	cartasGiradas[0].className="flip-container";
 	cartasGiradas[0].className="flip-container";
+    //esto es para qu el source de la primera carta girada se guarde en la variable carta1_src y no en carta2_src
+	first_time=true;
 }
 
 /* contador de tiempo */
@@ -132,13 +134,14 @@ function timer(){
 /* ayuda gira todas las cartas 5 segundos */
 function ayudas3(){
 	if (ayudasQueQuedan!=0){
-		cartas_a_girar = document.getElementsByClassName("flip-container");
+		var cartas_a_girar = document.getElementsByClassName("flip-container");
 		for (var i = 0; i < cartas_a_girar.length; i++) {
-    		cartas_a_girar[i].classList.add("clicked");
-   		}
+			cartas_a_girar[i].className="clicked2";
+		}
+   		cartas_a_girar = document.getElementsByClassName("clicked2");
     	setTimeout(function(){
-    		for (var i = 0; i < cartas_a_girar.length; i++) {
-    			cartas_a_girar[i].classList.remove("clicked");
+    		for (var i = 0; i < cartas_a_girar.length; i++){
+    			cartas_a_girar[i].className="flip-container";
     		}
 		}, 5000);
 
