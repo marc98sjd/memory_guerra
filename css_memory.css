@@ -1,5 +1,5 @@
 body{
-  background-image: url("fondo_pagina.jpg");
+  background-image: url("cartas/fondo_pagina.jpg");
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
@@ -10,7 +10,6 @@ table{
   margin-left:  auto;
   width: 65%;
   height: 65%;
-  border-collapse: collapse;
 }
 button{
   background-color: #466648;
@@ -24,9 +23,6 @@ td{
 }
 div > p{
   display: inline;
-}
-div > button{
-  display: block;
 }
 /* aixo estableix la perspectiva del container a 1000px */
 .flip-container{
@@ -96,7 +92,21 @@ div > button{
   float: left;
   text-align: center;
   height: 100%;
+  display: inline;
 }
 #ayudaRestante{
   display: inline;
+}
+#first_element, #second_element{
+  width: 50%;
+  float: left;
+  text-align: center;
+  height: 100%;
+  display: inline;
+}
+.a1{
+  float: right;
+}
+#a2{
+  float: left;
 }

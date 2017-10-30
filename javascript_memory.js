@@ -3,7 +3,7 @@ var cartas = [];
 var cartasGiradas = [];
 var num_intentos = 0;
 var restantes = 8;
-var contador = 0;
+var contador = 1;
 var primer_src=true;
 var carta1_src = "";
 var carta2_src = "";
@@ -14,10 +14,13 @@ var tiempo_total = "";
 var fin_tiempo=setInterval(timer,1000);
 var ayudasQueQuedan = 3;
 var resultadoAyudas = "";
+var indicoFinal = false;
 
 /*aquesta funcio la utilitzo perque no s'executi la funcio de cambiar 
 clase fins que s'hagi carregat tot l'html, per tal d'evitar possibles errors.*/
 function inicializar(){
+    //inhabilito boton guardar puntuacion hasta que termine el juego
+    document.getElementById("buttonSavePunctuation").disabled = true;
 	//pongo eventlistener a cada carta que al hacer clic llama a la funcion logica_juego
 	cartas = document.getElementsByClassName("flip-container");
 	for(var i = 0; i < cartas.length; i++){
@@ -83,8 +86,10 @@ function bloquearCartas(){
 
 function fin_juego(){
 	win1.play();
+	indicoFinal = true;
     alert("WIN!!!\n\nHas trigat "+tiempo_total+" y has necessitat "+num_intentos+" intents.");
    	clearInterval(fin_tiempo);
+   	document.getElementById("buttonSavePunctuation").disabled = false;
 }
 
 function actualizar_parejaRestante(){
@@ -135,7 +140,7 @@ function timer(){
 /* ayuda gira todas las cartas 5 segundos */
 function ayudas3(){
 	var cartas_a_girar = document.getElementsByClassName("flip-container");
-	if (ayudasQueQuedan!=0){
+	if (ayudasQueQuedan!=0 && indicoFinal == false){
 		for (var i = 0; i < cartas_a_girar.length; i++) {
 			//este if lo hago para evitar que se gire una carta que hayas cliqueado y aun no hayas girado la segunda
 			if (cartas_a_girar[i].classList.contains("clicked")){
@@ -159,4 +164,37 @@ function ayudas3(){
 	resultadoAyudas="("+(ayudasQueQuedan)+")";
 	document.getElementById("ayudaRestante").innerHTML = resultadoAyudas;
 	}
+}
+
+//funciones del ranking
+function guardarPuntuacion(){
+	guardarNombre();
+	guardarScore();
+	guardarTiempo();
+}
+function guardarNombre(){
+    var nombre = prompt("Introduce tu nombre:", "");
+    if (nombre == null || nombre == "") {
+        alert("\nNo se guardarà la puntuación.\n");
+    } else {
+        document.getElementById("cogernombre").value = nombre;
+    }
+}
+function guardarScore(){
+	var score = num_intentos;
+    document.getElementById("cogerpuntuacion").value = score;
+}
+function guardarTiempo(){
+	var tiempo = tiempo_total;
+    document.getElementById("cogertiempo").value = tiempo_total;
+}
+//compruebo que se haya introducido el nombre
+function comprovarValidez(){
+	var validarNombre = document.getElementById("cogernombre").value;
+	var validarScore = document.getElementById("cogerpuntuacion").value;
+	var introducido = true;
+	if (validarNombre.length == 0 || validarNombre == null || validarScore == null){
+    	introducido = false;
+	}
+	return introducido;
 }

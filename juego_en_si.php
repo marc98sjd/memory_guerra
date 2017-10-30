@@ -68,7 +68,7 @@ session_start();
           echo "<tr>";
           for($x=0;$x<$columnas;$x++){
           	$carta_delantera="cartas/".$array_fotos[$y];
-            echo "<td class='color_fondo'><div class='flip-container' id='a_girar".$y."'><div class='flipper'><div class='front'><img src='tras_carta.jpg' class='fotos'></div><div class='back'><img src='$carta_delantera' class='fotos'></div></div></div></td>";
+            echo "<td class='color_fondo'><div class='flip-container' id='a_girar".$y."'><div class='flipper'><div class='front'><img src='cartas/tras_carta.jpg' class='fotos'></div><div class='back'><img src='$carta_delantera' class='fotos'></div></div></div></td>";
             $y=$y+1;
             }
           echo "</tr>";
@@ -85,12 +85,24 @@ session_start();
         <p id="tiempo"></p>
       </div>
       <div id="final_results">
-        <button>Ranking</button>
+        <div id="centrando">
+          <form id="first_element" action="saveData.php" method="POST" onsubmit="return comprovarValidez()">
+            <button class="a1" onclick="guardarPuntuacion()" id="buttonSavePunctuation">Guardar puntuación</button>
+            <input type="hidden" name="sendname" id="cogernombre">
+            <input type="hidden" name="sendscore" id="cogerpuntuacion">
+            <input type="hidden" name="sendtime" id="cogertiempo">
+          </form>
+          <div id="second_element">
+            <form id="a2" action="ranking.php">
+              <button type="submit">Ver ranking</button>
+            </form>
+          </div>
+        </div>
         <form action="reset.php" method="POST">
-          <input type="hidden" name="resetInput">
+          <input type="hidden" name="resetGame">
           <button>Volver a empezar</button>
         </form>
-          <button id="ayuda">Ayudas
+        <button id="ayuda">Ayudas
         <p id="ayudaRestante"></p>
       </div>
     </div>
