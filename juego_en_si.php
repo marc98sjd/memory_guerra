@@ -21,6 +21,11 @@ session_start();
     <table>
       <!-- aqui creo una array amb el nom dels fitxers que contenen les fotos, segons la quantitat que demana l'usuari-->
       <?php
+        if (!isset($_SESSION['rankinglocal'])){
+          $bdRankingMundial = fopen("ranking_mundialLocal.txt", "w") or die("Problema con permisos...");
+          fwrite($bdRankingMundial,"Aun no hay partidas guardadas en local.");
+          fclose($bdRankingMundial);
+        }
         if(!isset($_SESSION['tamaño'])){
           $_SESSION['tamaño'] =  $_POST['tamaño_tablero'];    
         }

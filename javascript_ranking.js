@@ -1,201 +1,213 @@
 //sortear tabla ranking
 function ordenarTablaNombre(){
-	var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("tablaa");
-  switching = true;
+	var tabla, filas, mezclando, i, x, y, deberiaMezclar, orden, contadorMezcla = 0;
+  tabla = document.getElementById("tablaa");
+  mezclando = true;
   // sortear ascendente
-  dir = "asc"; 
+  orden = "asc"; 
   // bucle que no para hasta que se dehe de mezclar
-  while(switching){
+  while(mezclando){
     // empezamos seteando el switch a false
-    switching = false;
-    rows = table.getElementsByTagName("tr");
+    mezclando = false;
+    filas = tabla.getElementsByTagName("tr");
     /* bucle por todas las filas menos la primera que son los titulos y la ultima
     que es uma linea en blanco */
-    for (i = 1; i < (rows.length - 2); i++) {
+    for (i = 1; i < (filas.length - 2); i++) {
       // seteamos la variable de mezcla a false hasta comprovar si se deben sortear
-      shouldSwitch = false;
+      deberiaMezclar = false;
       /* cojo los elementos a comparar,, uno de la linea actual y otro de la siguiente */
-      x = rows[i].getElementsByClassName("primeratabla")[0];
-      y = rows[i + 1].getElementsByClassName("primeratabla")[0];
+      x = filas[i].getElementsByClassName("primeratabla")[0];
+      y = filas[i + 1].getElementsByClassName("primeratabla")[0];
+      x = x.innerHTML;
+      x = x.toLowerCase();
+      y = y.innerHTML;
+      y = y.toLowerCase();
       //compruevo si se tienen que mezclar en funcion de si es ascendente o descendente
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+      if (orden == "asc") {
+        if (x > y) {
           // si es que si, lo marco y salgo
-          shouldSwitch= true;
+          deberiaMezclar= true;
           break;
         }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+      } else if (orden == "desc") {
+        if (x < y) {
           // igual para orden descendente:
-          shouldSwitch= true;
+          deberiaMezclar= true;
           break;
         }
       }
     }
-    if (shouldSwitch) {
+    if (deberiaMezclar) {
       /* si he marcado un switch, lo hago y lo marco como hecho*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
+      filas[i].parentNode.insertBefore(filas[i + 1], filas[i]);
+      mezclando = true;
       // a cada switch, incremento el contador en 1
-      switchcount ++; 
+      contadorMezcla ++; 
     } else {
-      /* si no se ha cambiado nada y la direccion para ordenar es
-      ascendente, cambio la direccion para ordenar y empiezo el loop de nuevo */
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
+      /* si no se ha cambiado nada y la ordeneccion para ordenar es
+      ascendente, cambio la ordeneccion para ordenar y empiezo el loop de nuevo */
+      if (contadorMezcla == 0 && orden == "asc") {
+        orden = "desc";
+        mezclando = true;
       }
     }
   }
 }
 function ordenarTablaIntentos(){
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("tablaa");
-  switching = true;
+  var tabla, filas, mezclando, i, x, y, deberiaMezclar, orden, contadorMezcla = 0;
+  tabla = document.getElementById("tablaa");
+  mezclando = true;
   // sortear ascendente
-  dir = "desc"; 
+  orden = "asc"; 
   // bucle que no para hasta que se dehe de mezclar
-  while(switching){
+  while(mezclando){
     // empezamos seteando el switch a false
-    switching = false;
-    rows = table.getElementsByTagName("tr");
+    mezclando = false;
+    filas = tabla.getElementsByTagName("tr");
     /* bucle por todas las filas menos la primera que son los titulos y la ultima
     que es uma linea en blanco */
-    for (i = 1; i < (rows.length - 2); i++) {
+    for (i = 1; i < (filas.length - 2); i++) {
       // seteamos la variable de mezcla a false hasta comprovar si se deben sortear
-      shouldSwitch = false;
+      deberiaMezclar = false;
       /* cojo los elementos a comparar,, uno de la linea actual y otro de la siguiente */
-      x = rows[i].getElementsByClassName("primeratabla")[1];
-      y = rows[i + 1].getElementsByClassName("primeratabla")[1];
+      x = filas[i].getElementsByClassName("primeratabla")[1];
+      y = filas[i + 1].getElementsByClassName("primeratabla")[1];
+      x = x.innerHTML;
+      x = parseInt(x);
+      y = y.innerHTML;
+      y = parseInt(y);
       //compruevo si se tienen que mezclar en funcion de si es ascendente o descendente
-      if(dir == "asc"){
-        if (x.innerHTML > y.innerHTML) {
+      if(orden == "asc"){
+        if (x > y) {
           // si es que si, lo marco y salgo
-          shouldSwitch= true;
+          deberiaMezclar= true;
           break;
         }
-      } else if (dir == "desc") {
-        if (x.innerHTML < y.innerHTML) {
+      } else if (orden == "desc") {
+        if (x < y) {
           // igual para orden descendente:
-          shouldSwitch= true;
+          deberiaMezclar= true;
           break;
         }
       }
     }
-    if (shouldSwitch) {
+    if (deberiaMezclar) {
       /* si he marcado un switch, lo hago y lo marco como hecho*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
+      filas[i].parentNode.insertBefore(filas[i + 1], filas[i]);
+      mezclando = true;
       // a cada switch, incremento el contador en 1
-      switchcount ++; 
+      contadorMezcla ++; 
     } else {
-      /* si no se ha cambiado nada y la direccion para ordenar es
-      ascendente, cambio la direccion para ordenar y empiezo el loop de nuevo */
-      if (switchcount == 0 && dir == "desc") {
-        dir = "asc";
-        switching = true;
+      /* si no se ha cambiado nada y la ordeneccion para ordenar es
+      ascendente, cambio la ordeneccion para ordenar y empiezo el loop de nuevo */
+      if (contadorMezcla == 0 && orden == "asc") {
+        orden = "desc";
+        mezclando = true;
       }
     }
   }
 }
 //lo mismo para local
 function ordenarTablaNombreLocal(){
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("tablaa2");
-  switching = true;
+  var tabla, filas, mezclando, i, x, y, deberiaMezclar, orden, contadorMezcla = 0;
+  tabla = document.getElementById("tablaa2");
+  mezclando = true;
   // sortear ascendente
-  dir = "asc"; 
+  orden = "asc"; 
   // bucle que no para hasta que se dehe de mezclar
-  while(switching){
+  while(mezclando){
     // empezamos seteando el switch a false
-    switching = false;
-    rows = table.getElementsByTagName("tr");
+    mezclando = false;
+    filas = tabla.getElementsByTagName("tr");
     /* bucle por todas las filas menos la primera que son los titulos y la ultima
     que es uma linea en blanco */
-    for (i = 1; i < (rows.length - 3); i++) {
+    for (i = 1; i < (filas.length - 2); i++) {
       // seteamos la variable de mezcla a false hasta comprovar si se deben sortear
-      shouldSwitch = false;
+      deberiaMezclar = false;
       /* cojo los elementos a comparar,, uno de la linea actual y otro de la siguiente */
-      x = rows[i].getElementsByClassName("segundatabla")[0];
-      y = rows[i + 1].getElementsByClassName("segundatabla")[0];
+      x = filas[i].getElementsByClassName("segundatabla")[0];
+      y = filas[i + 1].getElementsByClassName("segundatabla")[0];
       //compruevo si se tienen que mezclar en funcion de si es ascendente o descendente
-      if (dir == "asc") {
+      if (orden == "asc") {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           // si es que si, lo marco y salgo
-          shouldSwitch= true;
+          deberiaMezclar= true;
           break;
         }
-      } else if (dir == "desc") {
+      } else if (orden == "desc") {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
           // igual para orden descendente:
-          shouldSwitch= true;
+          deberiaMezclar= true;
           break;
         }
       }
     }
-    if (shouldSwitch) {
+    if (deberiaMezclar) {
       /* si he marcado un switch, lo hago y lo marco como hecho*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
+      filas[i].parentNode.insertBefore(filas[i + 1], filas[i]);
+      mezclando = true;
       // a cada switch, incremento el contador en 1
-      switchcount ++; 
+      contadorMezcla ++; 
     } else {
-      /* si no se ha cambiado nada y la direccion para ordenar es
-      ascendente, cambio la direccion para ordenar y empiezo el loop de nuevo */
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
+      /* si no se ha cambiado nada y la ordeneccion para ordenar es
+      ascendente, cambio la ordeneccion para ordenar y empiezo el loop de nuevo */
+      if (contadorMezcla == 0 && orden == "asc") {
+        orden = "desc";
+        mezclando = true;
       }
     }
   }
 }
 function ordenarTablaIntentosLocal(){
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("tablaa2");
-  switching = true;
+  var tabla, filas, mezclando, i, x, y, deberiaMezclar, orden, contadorMezcla = 0;
+  tabla = document.getElementById("tablaa2");
+  mezclando = true;
   // sortear ascendente
-  dir = "desc"; 
+  orden = "asc"; 
   // bucle que no para hasta que se dehe de mezclar
-  while(switching){
+  while(mezclando){
     // empezamos seteando el switch a false
-    switching = false;
-    rows = table.getElementsByTagName("tr");
+    mezclando = false;
+    filas = tabla.getElementsByTagName("tr");
     /* bucle por todas las filas menos la primera que son los titulos y la ultima
     que es uma linea en blanco */
-    for (i = 1; i < (rows.length - 3); i++) {
+    for (i = 1; i < (filas.length - 2); i++) {
       // seteamos la variable de mezcla a false hasta comprovar si se deben sortear
-      shouldSwitch = false;
+      deberiaMezclar = false;
       /* cojo los elementos a comparar,, uno de la linea actual y otro de la siguiente */
-      x = rows[i].getElementsByClassName("segundatabla")[1];
-      y = rows[i + 1].getElementsByClassName("segundatabla")[1];
+      x = filas[i].getElementsByClassName("segundatabla")[1];
+      y = filas[i + 1].getElementsByClassName("segundatabla")[1];
+      x = x.innerHTML;
+      x = parseInt(x);
+      y = y.innerHTML;
+      y = parseInt(y);
       //compruevo si se tienen que mezclar en funcion de si es ascendente o descendente
-      if (dir == "asc") {
-        if (x.innerHTML> y.innerHTML) {
+      if (orden == "asc") {
+        if (x > y) {
           // si es que si, lo marco y salgo
-          shouldSwitch= true;
+          deberiaMezclar= true;
           break;
         }
-      } else if (dir == "desc") {
-        if (x.innerHTML < y.innerHTML) {
+      } else if (orden == "desc") {
+        if (x < y) {
           // igual para orden descendente:
-          shouldSwitch= true;
+          deberiaMezclar= true;
           break;
         }
       }
     }
-    if (shouldSwitch) {
+    if (deberiaMezclar) {
       /* si he marcado un switch, lo hago y lo marco como hecho*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
+      filas[i].parentNode.insertBefore(filas[i + 1], filas[i]);
+      mezclando = true;
       // a cada switch, incremento el contador en 1
-      switchcount ++; 
+      contadorMezcla ++; 
     } else {
-      /* si no se ha cambiado nada y la direccion para ordenar es
-      ascendente, cambio la direccion para ordenar y empiezo el loop de nuevo */
-      if (switchcount == 0 && dir == "desc") {
-        dir = "asc";
-        switching = true;
+      /* si no se ha cambiado nada y la ordeneccion para ordenar es
+      ascendente, cambio la ordeneccion para ordenar y empiezo el loop de nuevo */
+      if (contadorMezcla == 0 && orden == "asc") {
+        orden = "desc";
+        mezclando = true;
       }
     }
   }
