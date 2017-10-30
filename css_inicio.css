@@ -1,0 +1,16 @@
+body{
+  background-image: url("fondo_pagina.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  color: black;
+  text-align: center;
+}
+div{
+	margin-top: 300px;
+  	border: 5px dashed #466648;
+  	border-collapse: separate;
+  	border-spacing: 10px 50px;
+  	background-color: #b2ffb6;
+  	border-radius: 200px;
+}

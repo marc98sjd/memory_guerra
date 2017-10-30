@@ -8,3 +8,6 @@ Jose//3//0:22
 TEACHER//3//0:05
 un maquina//2//0:03
 asteroide//2//0:04
+peter la anguila//6//0:16
+juan//3//0:16
+juan//18//0:33

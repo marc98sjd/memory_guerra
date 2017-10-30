@@ -12,30 +12,55 @@
 		unset($_SESSION['array_final']);
 		unset($_SESSION['tamaño']);
 	?>
-	<div style="overflow-x:auto;">
-		<table id="rank">
-			<?php
-				echo "<tr>";
-				echo "<th onclick='ordenarTablaNombre()'>Nombre</th>
-						<th onclick='ordenarTablaIntentos()'>Intentos</th><th>Tiempo</th>";
-				echo "</tr>";
-				while (!feof($bdRankingMundial)){
+	<div id="rank" style="overflow-x:auto;">
+		<div id="primerDiv">
+			<table id="tablaa" class="igual">
+				<?php
 					echo "<tr>";
-					$single= fgets($bdRankingMundial);
-					$single= explode('//', $single);
-					$limit= sizeof($single);
-					for ($i=0; $i < $limit; $i++) { 
-						echo "<td>".$single[$i]."</td>";	
-					}
+					echo "<th onclick='ordenarTablaNombre()'>Nombre</th>
+							<th onclick='ordenarTablaIntentos()'>Intentos</th><th>Tiempo</th>";
 					echo "</tr>";
-				}
-				fclose($bdRankingMundial);
-				echo "<tr>";
-				echo "<td><p><strong>*NOTA:</strong> Para ordenar la tabla clica en Nombre para ordenarla alfabeticamente o en Intentos para ordenarla por numero de intentos.</p></td><td><form action='inicio.html'><input id='botonStart' type='submit' value='Nueva partida' /></form></td>";
-
-				echo "</tr>";
+					while (!feof($bdRankingMundial)){
+						echo "<tr class='trfirst'>";
+						$single= fgets($bdRankingMundial);
+						$single= explode('//', $single);
+						$limit= sizeof($single);
+						for ($i=0; $i < $limit; $i++) { 
+							echo "<td class='primeratabla'>".$single[$i]."</td>";	
+						}
+						echo "</tr>";
+					}
+					fclose($bdRankingMundial);
+				?>
+			</table>
+			<?php
+				$bdRankingMundial = fopen("ranking_mundialLocal.txt", "r") or die("Problema con permisos...");
 			?>
-		</table>
+			<table id="tablaa2" class="igual">
+				<?php
+					echo "<tr>";
+					echo "<th onclick='ordenarTablaNombreLocal()'>Nombre</th>
+							<th onclick='ordenarTablaIntentosLocal()'>Intentos</th><th>Tiempo</th>";
+					echo "</tr>";
+					while (!feof($bdRankingMundial)){
+						echo "<tr class='trsecond'>";
+						$single= fgets($bdRankingMundial);
+						$single= explode('//', $single);
+						$limit= sizeof($single);
+						for ($i=0; $i < $limit; $i++) { 
+							echo "<td class='segundatabla'>".$single[$i]."</td>";	
+						}
+						echo "</tr>";
+					}
+					fclose($bdRankingMundial);
+				?>
+			</table>
+		</div>
+		<div id="segundodiv">
+			<p><strong>*NOTA:</strong> Para ordenar la tabla clica en Nombre para ordenarla alfabeticamente o en Intentos para ordenarla por numero de intentos.</p>
+			<form action='inicio.html'><input id='botonStart' type='submit' value='Nueva partida' /></form>
+		</div>
+		
 	</div>
 
 </body>

@@ -21,9 +21,16 @@ session_start();
     <table>
       <!-- aqui creo una array amb el nom dels fitxers que contenen les fotos, segons la quantitat que demana l'usuari-->
       <?php
-        if(!isset($_SESSION['tamaño'])) {
+        if(!isset($_SESSION['tamaño'])){
           $_SESSION['tamaño'] =  $_POST['tamaño_tablero'];    
-        }  
+        }
+        if (isset($_POST['tamaño_tablero'])){
+          if ($_SESSION['tamaño']!==$_POST['tamaño_tablero']){
+            $_SESSION['tamaño'] =  $_POST['tamaño_tablero'];
+            unset($_SESSION['array_final']);
+          }
+        }
+        
         $num_cartas=0;
         if($_SESSION['tamaño']==4){
           $filas = 4;
@@ -68,7 +75,7 @@ session_start();
           echo "<tr>";
           for($x=0;$x<$columnas;$x++){
           	$carta_delantera="cartas/".$array_fotos[$y];
-            echo "<td class='color_fondo'><div class='flip-container' id='a_girar".$y."'><div class='flipper'><div class='front'><img src='cartas/tras_carta.jpg' class='fotos'></div><div class='back'><img src='$carta_delantera' class='fotos'></div></div></div></td>";
+            echo "<td class='color_fondo'><div class='flip-container' id='a_girar".$y."'><div class='flipper'><div class='front'><img src='tras_carta.jpg' class='fotos'></div><div class='back'><img src='$carta_delantera' class='fotos'></div></div></div></td>";
             $y=$y+1;
             }
           echo "</tr>";
