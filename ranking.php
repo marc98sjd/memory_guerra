@@ -58,7 +58,7 @@
 		</div>
 		<div id="segundodiv">
 			<p><strong>*NOTA:</strong> Para ordenar la tabla clica en Nombre para ordenarla alfabeticamente o en Intentos para ordenarla por numero de intentos.</p>
-			<form action='inicio.html'><input id='botonStart' type='submit' value='Nueva partida' /></form>
+			<form action='index.html'><input id='botonStart' type='submit' value='Nueva partida' /></form>
 		</div>
 		
 	</div>
