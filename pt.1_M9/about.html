@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About PepLemon</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css_pt1.css">
+</head>
+<body>
+	<header>PepLemon</header>
+	<div class="topnav" id="myTopnav">
+  		<a href="html_pt1.html">Inici</a>
+  		<a href="#noves">Noticies</a>
+  		<a href="#contacte">Contacte</a>
+  		<a id="right" href="about.html" class="active">Que fem?</a>
+  		<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+ 	</div>
+	<div id="about">
+		<h1>Sobre la tenda:</h1>
+		<div id="about2">
+			<p>Som una companyía especialitzada en la producció i venta de refrescos 100% produits a Mallorca. A més a més, cooperem amb iniciatives per la inserció laboral de persones amb discapacitats i fomentem el comerç local.</p>
+			<p>Siguis una gran empresa, un petit 'start-up', un comerç familiar o simplement desitges probar qualsevol dels nostres productes, tens cabuda a la nostra empresa! Així es, <strong>realitzem venta al per-major i també al per-menor!</strong></p>
+		</div>
+	</div>
+	<script>
+		function myFunction() {
+    		var x = document.getElementById("myTopnav");
+    		if (x.className === "topnav") {
+       			x.className += " responsive";
+    		} else {
+        		x.className = "topnav";
+    		}
+		}
+	</script>
+</body>
+</html>
